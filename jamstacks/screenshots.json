@@ -1,0 +1,22 @@
+{
+  "templateId": "next-realestate-modern",
+  "capturedAt": "2026-11-21T15:56:51.879Z",
+  "captures": [
+    {
+      "mode": "light",
+      "file": "jamstacks/home-light.jpg",
+      "bytes": 165286,
+      "sha256": "ee8106aa0db41e68d7233f942d883cced31ce73716f98cf533f4b52ef62a7a9e",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "mode": "dark",
+      "file": "jamstacks/home-dark.jpg",
+      "bytes": 169447,
+      "sha256": "2cb500dec408cb83caea5677743ecdaa32b43eb14d068100d32a6e12fbae8ffe",
+      "width": 1440,
+      "height": 900
+    }
+  ]
+}

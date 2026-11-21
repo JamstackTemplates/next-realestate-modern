@@ -1,7 +1,8 @@
 {
-  "name": "Jamstacks starter",
-  "description": "A neutral Next.js foundation for Jamstacks websites.",
-  "domain": "",
+  "name": "Keystone & Gold Realty",
+  "description": "Keystone & Gold Realty sells homes across Carlton and Melbourne's inner north. See homes for sale, recent sold results and our agents, or request a free appraisal.",
+  "domain": "next-realestate-modern.jamstacks.net",
+  "timeZone": "Australia/Melbourne",
   "jamstacks": {
     "siteId": "",
     "cdnUrl": "https://cdn.jamstacks.net"

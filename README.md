@@ -1,114 +1,86 @@
-# JamstackTemplates Next.js starter
+# Keystone & Gold Realty (`next-realestate-modern`)
 
-The shared starter for Next.js templates in the `JamstackTemplates` organization. Its canonical home is
-`JamstackTemplates/template-next`, alongside the templates generated from it.
-It is not a gallery design or a published demo. Business content is sample content. No application code
-in a website created from this template depends on the starter checkout or the portal repository.
+A modern boutique residential real estate agency website built with Next.js static export and Tailwind CSS v4. Designed around **"Bluestone, brass and gold leaf"** for a fictitious Carlton, Melbourne sales agency serving inner-north sellers and buyers.
 
-## Build your website
+This is a self-contained static website: it does not require a runtime Next.js server, database, or external portal checkout to build or serve.
 
-Start in the checkout of the repository GitHub created from `JamstackTemplates/template-next`. All
-starter files are already present. Local development requires Node 24 or later and npm.
+## Local development
 
-To build a new site, fill in `plan/PLAN.md`, then tell the coding agent **`Implement plan/PLAN.md`**.
-In Claude Code, `/write-plan <business description>` drafts the brief for you. For a gallery template,
-pass the table row: `/write-plan next-type-style | Business | Description | Form purpose`.
-After reviewing the finished site, run `/cleanup-plan` or delete `plan/` and `.claude/skills/` by hand
-to remove all initial build instructions.
+Requires Node 24+ and npm.
 
-To preview locally, run `npm ci` and `npm run dev` from the repository root.
+```sh
+npm ci
+npm run dev
+```
+
+To run tests, typechecks and a full static export:
+
+```sh
+npm run check
+npm start
+```
 
 ## Pages
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Minimal content-driven home page and Organization JSON-LD |
-| `/contact/` | Hosted support form when configured; visible email alternative |
-| `/404.html` | Friendly static error page |
+| `/` | Home: Nicholson Street hero scene, featured homes in the shopfront window, derived recently sold figures & signboards, four-step selling process, brass team wall, appraisal CTA, Carlton office details and `RealEstateAgent` JSON-LD |
+| `/listings/` | For sale ledger with progressive-enhancement brass-rail filters (suburb, property type, minimum bedrooms) synced to URL query params and Victorian price-guide note |
+| `/listings/[id]/` | Static listing detail page with keystone-arched facade, specs, inspection timetable, listing agent brass plate, listing ID callout and offer-free residential JSON-LD |
+| `/sold/` | Recent sold results grouped by month newest first with derived metrics, signboards, facade thumbnails and price-withheld support |
+| `/agents/` | Four-agent directory with engraved brass name plates, licence tier, suburbs, languages, bios and derived active/sold counts |
+| `/appraisal/` | Free written appraisal explainer with statutory Victorian disclaimer, four-step timeline, architectural floor-plan factors and recent nearby sales |
+| `/contact/` | Hosted Jamstacks support form when configured (or email fallback), always-visible email & phone, Google Map, live Melbourne office hours badge and agents' direct lines |
+| `/404.html` | Themed "This one's off the market" static error page |
 
-## Make it yours
+## Make it yours — file ownership
 
 | File | Owns |
 | --- | --- |
-| `content/business.ts` | Shared business name, contact details and starter sample copy |
-| `app/page.tsx`, `app/<route>/page.tsx` | Page composition and editable copy such as headings and calls to action |
-| `content/menu.ts` or `content/services.ts` (add when needed) | Industry-specific typed collections |
-| `site.config.json` | Public name, description, hostname, optional timeZone and Jamstacks integration |
-| `app/tailwind.input.css` | Theme tokens, utility mappings and small shared styles |
-| `components/site-header.tsx`, `site-footer.tsx` | Replaceable navigation and visual shell |
-| `lib/structured-data.ts` | Schema type/properties derived from real content |
-| `app/sitemap.ts` | Public routes; update when adding a page |
+| `content/business.ts` | Agency name, tagline, contact details, Carlton address, directions, service area, office hours, statutory disclaimers and Contact wording |
+| `content/listings.ts` | Active homes for sale (`id`, address, specs, `priceGuide`, `method`, `status`, `featured`, `agentId`, inspections, `art` facade variants) |
+| `content/sold.ts` | Recent sold results (`id`, price or `priceWithheld: true`, `method`, `soldMonth`, `daysOnMarket`, `agentId`) — drives all derived stats automatically |
+| `content/agents.ts` | Team roster (`id`, `name`, `role`, `licence`, `phone`, `email`, `suburbs`, `languages`, `bio`, `initials`, `since`) |
+| `app/page.tsx`, `app/**/page.tsx` | Page composition and editable page-specific headings, prose and calls to action |
+| `site.config.json` | Public name, description, hostname, `timeZone` (`Australia/Melbourne`) and Jamstacks `siteId`/`cdnUrl` (no business content) |
+| `app/tailwind.input.css` | Light ("limestone day") and dark ("Nicholson Street at night") palette tokens, artwork variables, bluestone speckle and floor-plan grid |
+| `components/art/*` | Bespoke inline SVG illustrations (`HeroScene`, `Facade`, `SoldBoard`, `ShopfrontWindow`, `OfficeElevation`, `BrassPlate`, `AppraisalKeyArch`, `OffMarketDoor`, `KeystoneMark`, dividers & icons) |
+| `lib/real-estate.ts` | Formatting, sorting, filtering, derived sold metrics and collection validators |
+| `lib/structured-data.ts` | `RealEstateAgent`, `Person`, and offer-free `SingleFamilyResidence`/`Apartment` JSON-LD |
+| `app/sitemap.ts` | All static routes plus every `/listings/[id]/` detail route |
 
-Edit page copy in the route file, for example `<Hero.Heading>Seasonal flowers</Hero.Heading>`
-in `app/page.tsx` for the Home page. The backing
-component owns the styling and interactions. Use typed fields for data the site needs to look up or
-reuse. For example, change `business.email` to update Contact. Rename in `business.name` and
-`site.config.json.name`. Add a typed core-content file for frequent owner edits: a food menu should use
-the existing sections/items/price/availability model; changes such as sold out, seasonal or a new section
-should be data edits with actionable content tests. Do not add business content to configuration: the
-Jamstacks provisioner replaces that file wholesale, possibly adding `provisioningId`.
+### Frequent owner edits
 
-## Appearance and optional local-business features
+- **Mark a home under offer:** in `content/listings.ts`, set `status: 'under-offer'` on that listing (for example `fitzroy-north-park-townhouse`). Both `/listings/` and `/listings/[id]/` display the diagonal **UNDER OFFER** sash automatically.
+- **Change what appears in the Home shopfront window:** toggle `featured: true` or `false` in `content/listings.ts`.
+- **Update a price guide or inspection time:** edit `priceGuide` (staying within the 10% Victorian range) or `inspections` in `content/listings.ts` and run `npm test` to verify no range or agent-slot errors.
+- **Move a sold home to the Sold ledger:** remove it from `content/listings.ts` and append a record in `content/sold.ts` (use `price: null, priceWithheld: true` if the vendor requested confidentiality). Derived stats on Home and Sold update automatically.
 
-The starter uses system fonts, neutral Tailwind v4 tokens and the published `jamstacks` package's
-ThemeProvider, ThemeScript and DarkModeToggle. No font download or font licence file is needed for
-system fonts. Each designed template chooses and documents self-hosted font packages and their licences.
-Utilities live in components; colours originate in CSS tokens with light, automatic-dark and explicit-dark
-values plus `@theme inline` mappings. Keep the hosted form's primary fill dark enough for white text.
-Keyboard focus, reduced motion and print styles are included. The footer credit is yours to keep,
-reword or remove.
+## Typography and licences
 
-For a business with visiting hours, add address/directions/hours to typed content, set the IANA `timeZone`
-in site.config.json and use optional `GoogleMap`, `TimeZoneNote` and `OpenBadge` components. GoogleMap
-accepts an address and descriptive title; map helpers need no key. `OpenBadge` accepts seven
-`OpeningHours` records, uses the business zone and refreshes each minute in the browser; static/no-JS
-output is neutral. Same-day intervals only: overnight hours fail validation and need a tested extension
-before use. The baseline home page does not load a map or assert opening hours.
+All fonts are self-hosted via Fontsource npm packages (no external font CDN requests):
 
-## Public configuration
+- **Display:** `@fontsource-variable/bodoni-moda` (SIL Open Font License 1.1)
+- **Body & UI:** `@fontsource-variable/manrope` (SIL Open Font License 1.1)
+- **Labels & specs:** `@fontsource/dm-mono` (SIL Open Font License 1.1)
 
-```json
-{
-  "name": "Business name",
-  "description": "Public description",
-  "domain": "next-business-minimal.jamstacks.net",
-  "timeZone": "America/New_York",
-  "jamstacks": { "siteId": "", "cdnUrl": "https://cdn.jamstacks.net" }
-}
-```
+## Public configuration and Contact contract
 
-The starter itself leaves domain/timeZone unset. Gallery templates use their folder name plus
-`.jamstacks.net`; customers replace the demo domain with their own. Do not invent canonical URLs when
-the deployed address is unknown.
+`site.config.json` follows the Jamstacks provisioner contract (`name`, `description`, `domain`, `timeZone`, `jamstacks.siteId`, `jamstacks.cdnUrl`, optional `provisioningId`). Never store private credentials there.
 
 | Environment variable | Public build-time meaning |
 | --- | --- |
 | `JAMSTACKS_SITE` | Website ID; blank retains file default, absent ID gives email fallback |
 | `NEXT_PUBLIC_JAMSTACKS_CDN_URL` | CDN asset base; default `https://cdn.jamstacks.net` |
 | `NEXT_PUBLIC_SITE_DOMAIN` | Hostname overriding config domain |
-| `SITE_TIME_ZONE` | IANA zone overriding config timeZone |
+| `SITE_TIME_ZONE` | IANA zone overriding config `timeZone` (`Australia/Melbourne`) |
 | `PAGES_BASE_PATH` | Project path such as `/preview`; blank for custom domain/root |
 | `PAGES_BASE_URL` | Actual Pages origin and path; takes precedence for canonical URLs |
 | `JAMSTACKS_ALLOW_LOCAL_CDN` | Explicit localhost-only testing opt-in; disallowed in Actions |
 
-Copy .env.example to .env.local for Next.js local work. All listed values are public. Never add tokens,
-SMTP credentials or publishing keys. Newer dependencies should stay within reviewed majors; update
-package.json and package-lock.json together, then run the full checks.
+Only `/contact/` renders `<jamstacks-support-form>` and loads `{cdn}/sites/{siteId}/embed.js` when configured. Without a site ID, Contact shows a visible email fallback with no script request. Internal links use `SiteLink` so Contact always uses full-document navigation in both directions.
 
-## Contact contract
-
-The real `<jamstacks-support-form>` host and one `{cdn}/sites/{siteId}/embed.js` bootstrap appear only
-on Contact when configured. Without a site ID there is no embed host/request. Email remains visible
-in either case. The hosted runtime owns name/email/message fields, validation, submission and results.
-Never register the element locally, substitute a form or intercept submission. Contact navigation uses
-full document loads via SiteLink because the runtime has no remount API. Copy must describe an enquiry,
-not a confirmed booking/order/payment; no attachments or extra input fields.
-
-For local Jamstacks development, configure an explicit local CDN URL and
-`JAMSTACKS_ALLOW_LOCAL_CDN=1`; remote builds reject localhost. A locally loaded component does not prove
-real message delivery. Test delivery separately against a configured site/backend.
-
-## Checks and preview
+## Checks, project-path preview and gallery assets
 
 ```sh
 npm run check
@@ -116,51 +88,4 @@ PAGES_BASE_PATH=/preview PAGES_BASE_URL=https://owner.github.io/preview npm run 
 npm start -- --base /preview --port 3000
 ```
 
-Tests cover config/provisioner compatibility, embed state, content rules, optional opening hours,
-and structured-data escaping. Typecheck uses Next's generated route types.
-When changing the Contact integration, base paths or canonical URLs, check the exported HTML and
-sitemap. Verify both configured and unconfigured Contact with the corresponding build settings.
-Test light/dark at desktop and mobile widths, keyboard navigation, unknown routes, repeated Contact
-navigation and any added browser interactions. Return to a normal build before capturing final assets.
-
-## GitHub Pages deployment
-
-`.github/workflows/pages.yml` uses npm ci, tests, typecheck and static export. It preserves Jamstacks'
-`provisioning_id` dispatch input
-and correlated run name. It builds pull requests without deploying, and publishes main/manual runs.
-Configure Pages to use GitHub Actions. GitHub ignores a CNAME file for Actions deployments, so do not
-add public/CNAME; the custom domain is a repository setting. The workflow sets it before building
-when a `PAGES_ADMIN_TOKEN` secret is available (a fine-grained token with Administration and Pages
-write access to the repository, e.g. as an organisation secret). The domain is the `SITE_DOMAIN`
-variable, else site.config.json's `domain`, else `<repo-name>.jamstacks.net` for JamstackTemplates
-repositories. Once the domain is set and its certificate is issued, a later deploy also enforces HTTPS.
-Without the secret the step only prints a notice; set the custom domain and HTTPS in Settings → Pages.
-DNS is managed separately; for template demos the CNAME targets `jamstacktemplates.github.io`.
-
-## Content Security Policy
-
-A host-level CSP must permit same-origin Next.js scripts/assets, the inline theme bootstrap (using an
-appropriate hash/nonce policy), the configured Jamstacks CDN scripts/assets and the published form's
-API connection origin. Derive actual directives from the deployed component. Optional maps require
-`frame-src https://www.google.com`. Apply CSP at the host; static export cannot set response headers
-through a running Next.js server. Do not put private credentials into CSP or relax policies blindly.
-
-## Publishing assets and structure
-
-`app/`, `components/`, `content/`, `lib/` and `types/` are the website. `scripts/` includes static
-preview and verification, `tests/` covers customer behavior, and `.github/` supplies deployment.
-`jamstacks/` is removable gallery-only source metadata. Ordinary builds, tests and Pages work after
-it is deleted. To publish a gallery template, create [its manifest](jamstacks/README.md) and capture
-genuine screenshots before running its separate publishing test:
-
-```sh
-node /home/mythz/src/mythz/jamstacks.net/tools/template-screenshots/capture.mjs \
-  --template /path/to/next-type-style --modes light,dark --executable /usr/bin/chromium
-node --test jamstacks/config.test.mjs
-```
-
-Before publication: replace neutral content and shell; validate industry data/schema and all links;
-choose licensed fonts; verify both themes/base-path/embed states; create a neutral 1200×630 public/og.png
-from the finished design and wire metadata; replace the icon; generate gallery captures and validate;
-confirm domain/Pages settings and HTTPS; remove `plan/` and `.claude/skills/` after review. The website must not import or
-link the planning folder. No stock screenshot or OG image is supplied as if it were final.
+`jamstacks/` holds removable gallery-only manifest and light/dark captures; ordinary builds, tests and GitHub Pages deployments never import it. Validate gallery assets separately with `node --test jamstacks/config.test.mjs`.

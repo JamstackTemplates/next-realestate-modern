@@ -17,16 +17,13 @@ The `.claude/skills/` folder holds `write-plan` (drafts `plan/PLAN.md`) and `cle
 
 ## Structure and content
 
-`content/business.ts` holds the starter's shared business details and sample copy. When building a
-site, write page-specific copy directly in the route's `app/**/page.tsx` as JSX children of named React
-components. Put headings, calls to action, labels and captions in page order. Backing components
-own the semantic markup, Tailwind styles, accessibility and behavior. Keep typed data in `content/`
-for values the site reads programmatically, including contact details and structured collections.
-Document fields and validate IDs, required
-fields, prices, availability and references with item-specific failures. Rename in content and
-site.config.json. Keep the provisioner's config shape: name, description, domain, optional timeZone,
-jamstacks.siteId/cdnUrl and optional provisioningId. Business data never goes there. Reuse the design's
-illustrations and palette rather than adding unrelated assets.
+File ownership for Keystone & Gold Realty (`next-realestate-modern`):
+- `content/business.ts`: agency details, Carlton office address, directions, service area, hours and statutory copy.
+- `content/listings.ts`: active homes for sale (`id`, specs, `priceGuide`, `method`, `status`, `featured`, `agentId`, inspections, `art`).
+- `content/sold.ts`: recent sold results (`id`, `price`/`priceWithheld`, `method`, `soldMonth`, `daysOnMarket`, `agentId`); derived metrics in `lib/real-estate.ts` compute directly from this file.
+- `content/agents.ts`: the four agents and their suburbs, languages, licence tier, bios and contact lines.
+- `app/**/page.tsx`: page-specific headings, prose and CTAs as JSX children of backing components (`components/home-sections.tsx`, `components/appraisal-sections.tsx`, `components/listings-ledger.tsx`, `components/art/*`).
+- `site.config.json`: provisioner shape only (`name`, `description`, `domain`, `timeZone`, `jamstacks.siteId/cdnUrl`, optional `provisioningId`). Business data never goes there. Reuse the design's bespoke SVG illustrations (`components/art/*`) and charcoal/limestone/gold palette rather than adding unrelated assets.
 
 ## Styling: Tailwind CSS v4
 

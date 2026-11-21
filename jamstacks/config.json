@@ -1,0 +1,15 @@
+{
+  "name": "Keystone & Gold Realty",
+  "description": "Modern real estate agency in charcoal and gold, with featured listings, sold results, agents and an appraisal call-to-action.",
+  "tech": "next",
+  "type": "realestate",
+  "style": "modern",
+  "internal": false,
+  "components": ["support-form"],
+  "configFile": "site.config.json",
+  "screenshots": {
+    "light": "jamstacks/home-light.jpg",
+    "dark": "jamstacks/home-dark.jpg",
+    "theme": { "strategy": "media" }
+  }
+}

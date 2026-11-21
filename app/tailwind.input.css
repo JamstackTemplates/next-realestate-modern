@@ -1,63 +1,188 @@
 @import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+ * Keystone & Gold Realty — "Bluestone, brass and gold leaf"
+ * Light palette: "Limestone day"
+ * Dark palette:  "Nicholson Street at night"
+ */
 :root {
-  --bg: #f7f8fa;
-  --surface: #ffffff;
-  --text: #172033;
-  --muted: #526078;
-  --accent: #2457a7;
-  --accent-ink: #2457a7;
-  --on-accent: #ffffff;
-  --line: #c7cfdb;
-  --focus: #2457a7;
-  --map-filter: none;
+  --bg: #F4F1EA;
+  --surface: #FBF9F4;
+  --raised: #ECE6DA;
+  --text: #1E1F22;
+  --muted: #5B5A55;
+  --line: #D8D1C2;
+
+  --band: #2B2E33;
+  --band-text: #F4F1EA;
+  --band-muted: #C2BCB0;
+  --band-line: #43474F;
+
+  --gold-leaf: #C9A227;
+  --gold-highlight: #EAD280;
+  --gold-text: #7A5A12;
+
+  --accent: #7A5A12;
+  --accent-hover: #654A0E;
+  --accent-ink: #7A5A12;
+  --on-accent: #FFFFFF;
+  --focus: #7A5A12;
+
+  /* Artwork CSS variables */
+  --art-stroke: #1E1F22;
+  --art-stroke-soft: #5B5A55;
+  --art-fill-main: #FBF9F4;
+  --art-fill-alt: #ECE6DA;
+  --art-fill-roof: #3A3D42;
+  --art-fill-bluestone: #2B2E33;
+  --art-window: #9AA5AE;
+  --art-window-glow: transparent;
+  --art-sky: #E7E1D3;
+  --art-foliage: #6E7668;
+  --art-brass: #C9A227;
+  --art-brass-plate: #E3CD86;
+  --art-brass-ink: #1E1F22;
+  --art-sash: #C9A227;
+  --art-sash-highlight: #EFE0A6;
+  --art-sash-ink: #1E1F22;
+  --art-board: #FBF9F4;
+  --art-board-ink: #1E1F22;
+  --art-grid-line: rgba(30, 31, 34, 0.08);
+  --art-speckle: rgba(244, 241, 234, 0.09);
+
+  --map-filter: grayscale(0.18) sepia(0.08) contrast(1.02);
   color-scheme: light;
 }
+
 @media (prefers-color-scheme: dark) {
- :root:not(.light) {
-  --bg: #141923;
-  --surface: #1e2633;
-  --text: #f1f5fa;
-  --muted: #b5c2d5;
-  --accent: #2457a7;
-  --accent-ink: #a9cbff;
-  --on-accent: #ffffff;
-  --line: #61708a;
-  --focus: #a9cbff;
-  --map-filter: grayscale(.4) brightness(.8);
-  color-scheme: dark;
- }
+  :root:not(.light) {
+    --bg: #15171A;
+    --surface: #1F2226;
+    --raised: #2A2E33;
+    --text: #EDE8DC;
+    --muted: #A8A296;
+    --line: #3A3D42;
+
+    --band: #0E0F11;
+    --band-text: #EDE8DC;
+    --band-muted: #A8A296;
+    --band-line: #2C3036;
+
+    --gold-leaf: #D9B65A;
+    --gold-highlight: #F2DE9B;
+    --gold-text: #E2C26A;
+
+    --accent: #8C6A1C;
+    --accent-hover: #7D5E18;
+    --accent-ink: #E2C26A;
+    --on-accent: #FFFFFF;
+    --focus: #E2C26A;
+
+    /* Artwork CSS variables — lit warm gold windows at night */
+    --art-stroke: #EDE8DC;
+    --art-stroke-soft: #A8A296;
+    --art-fill-main: #23272C;
+    --art-fill-alt: #2C3036;
+    --art-fill-roof: #141619;
+    --art-fill-bluestone: #0E0F11;
+    --art-window: #E8C468;
+    --art-window-glow: rgba(232, 196, 104, 0.24);
+    --art-sky: #1A1D22;
+    --art-foliage: #394238;
+    --art-brass: #D9B65A;
+    --art-brass-plate: #CCA64A;
+    --art-brass-ink: #15171A;
+    --art-sash: #D9B65A;
+    --art-sash-highlight: #F3E0A4;
+    --art-sash-ink: #15171A;
+    --art-board: #1B1E22;
+    --art-board-ink: #EDE8DC;
+    --art-grid-line: rgba(237, 232, 220, 0.06);
+    --art-speckle: rgba(237, 232, 220, 0.08);
+
+    --map-filter: grayscale(0.45) brightness(0.76) contrast(1.08);
+    color-scheme: dark;
+  }
 }
+
 :root.dark {
-  --bg: #141923;
-  --surface: #1e2633;
-  --text: #f1f5fa;
-  --muted: #b5c2d5;
-  --accent: #2457a7;
-  --accent-ink: #a9cbff;
-  --on-accent: #ffffff;
-  --line: #61708a;
-  --focus: #a9cbff;
-  --map-filter: grayscale(.4) brightness(.8);
+  --bg: #15171A;
+  --surface: #1F2226;
+  --raised: #2A2E33;
+  --text: #EDE8DC;
+  --muted: #A8A296;
+  --line: #3A3D42;
+
+  --band: #0E0F11;
+  --band-text: #EDE8DC;
+  --band-muted: #A8A296;
+  --band-line: #2C3036;
+
+  --gold-leaf: #D9B65A;
+  --gold-highlight: #F2DE9B;
+  --gold-text: #E2C26A;
+
+  --accent: #8C6A1C;
+  --accent-hover: #7D5E18;
+  --accent-ink: #E2C26A;
+  --on-accent: #FFFFFF;
+  --focus: #E2C26A;
+
+  --art-stroke: #EDE8DC;
+  --art-stroke-soft: #A8A296;
+  --art-fill-main: #23272C;
+  --art-fill-alt: #2C3036;
+  --art-fill-roof: #141619;
+  --art-fill-bluestone: #0E0F11;
+  --art-window: #E8C468;
+  --art-window-glow: rgba(232, 196, 104, 0.24);
+  --art-sky: #1A1D22;
+  --art-foliage: #394238;
+  --art-brass: #D9B65A;
+  --art-brass-plate: #CCA64A;
+  --art-brass-ink: #15171A;
+  --art-sash: #D9B65A;
+  --art-sash-highlight: #F3E0A4;
+  --art-sash-ink: #15171A;
+  --art-board: #1B1E22;
+  --art-board-ink: #EDE8DC;
+  --art-grid-line: rgba(237, 232, 220, 0.06);
+  --art-speckle: rgba(237, 232, 220, 0.08);
+
+  --map-filter: grayscale(0.45) brightness(0.76) contrast(1.08);
   color-scheme: dark;
 }
 
 @theme {
   --color-*: initial;
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --radius-ui: .375rem;
+  --font-display: 'Bodoni Moda Variable', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Manrope Variable', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius-ui: 2px;
 }
+
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
+  --color-raised: var(--raised);
   --color-ink: var(--text);
   --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-band: var(--band);
+  --color-band-ink: var(--band-text);
+  --color-band-muted: var(--band-muted);
+  --color-band-line: var(--band-line);
+  --color-gold-leaf: var(--gold-leaf);
+  --color-gold-highlight: var(--gold-highlight);
+  --color-gold-text: var(--gold-text);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --color-accent-ink: var(--accent-ink);
   --color-on-accent: var(--on-accent);
-  --color-line: var(--line);
+  --color-focus: var(--focus);
 }
+
 :root {
   --measure: 42rem;
   --jamstacks-font-family: var(--font-sans);
@@ -78,35 +203,339 @@
   --jamstacks-toggle-dark-background: var(--surface);
   --jamstacks-toggle-focus-color: var(--focus);
 }
+
 @layer base {
-  html { background: var(--bg); color: var(--text); font-family: var(--font-sans); scroll-padding-top: 1.5rem; }
-  body { margin: 0; line-height: 1.6; }
-  main { min-height: 65vh; }
-  a { text-underline-offset: .2em; }
-  a:hover { text-decoration: underline; }
-  button { cursor: pointer; }
-  :focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
-  [aria-current="page"] { text-decoration: underline; }
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    accent-color: var(--accent);
+    scroll-padding-top: 5.5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    margin: 0;
+    line-height: 1.62;
+    overflow-x: clip;
+  }
+
+  main {
+    min-height: 65vh;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.06;
+  }
+
+  a {
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  [aria-current="page"] {
+    text-decoration: underline;
+    text-decoration-color: var(--gold-leaf);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35em;
+  }
 }
-@utility wrap { width: min(100% - 2rem, 72rem); margin-inline: auto; }
+
+@utility wrap {
+  width: min(100% - 2rem, 78rem);
+  margin-inline: auto;
+}
+
 @layer components {
-  .button { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: .6rem 1.2rem; border: 1px solid var(--accent); border-radius: var(--radius-ui); background: var(--accent); color: var(--on-accent); font-weight: 600; text-decoration: none; }
-  .button:hover { text-decoration: underline; }
-  .button-quiet { background: var(--surface); color: var(--accent-ink); border-color: var(--line); }
-  .text-link { color: var(--accent-ink); text-decoration: underline; }
-  .eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-  .skip-link { position: absolute; left: 1rem; top: -8rem; padding: .75rem; z-index: 200; background: var(--surface); }
-  .skip-link:focus { top: 1rem; }
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.65rem 1.35rem;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-ui);
+    background: var(--accent);
+    color: var(--on-accent);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+  }
+
+  .button:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    text-decoration: none;
+  }
+
+  .button-compact {
+    min-height: 2.35rem;
+    padding: 0.45rem 0.95rem;
+    font-size: 0.84rem;
+  }
+
+  .button-quiet {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--line);
+  }
+
+  .button-quiet:hover {
+    background: var(--raised);
+    border-color: var(--gold-leaf);
+    color: var(--text);
+  }
+
+  .button-on-band {
+    background: var(--accent);
+    border-color: var(--gold-leaf);
+    color: var(--on-accent);
+  }
+
+  .button-on-band:hover {
+    background: var(--accent-hover);
+    border-color: var(--gold-highlight);
+  }
+
+  .text-link {
+    color: var(--accent-ink);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--gold-leaf) 70%, transparent);
+    text-underline-offset: 0.24em;
+  }
+
+  .text-link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-text);
+  }
+
+  .mono-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: -8rem;
+    padding: 0.75rem 1rem;
+    z-index: 200;
+    border: 1px solid var(--gold-leaf);
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  /* Bluestone charcoal band with fine SVG dot speckle texture */
+  .bluestone-band {
+    background-color: var(--band);
+    color: var(--band-text);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='%23F4F1EA' fill-opacity='0.065'%3E%3Ccircle cx='5' cy='9' r='0.9'/%3E%3Ccircle cx='19' cy='4' r='0.6'/%3E%3Ccircle cx='33' cy='15' r='0.8'/%3E%3Ccircle cx='51' cy='8' r='0.7'/%3E%3Ccircle cx='11' cy='27' r='0.7'/%3E%3Ccircle cx='27' cy='31' r='1.0'/%3E%3Ccircle cx='44' cy='24' r='0.6'/%3E%3Ccircle cx='59' cy='33' r='0.8'/%3E%3Ccircle cx='8' cy='47' r='0.9'/%3E%3Ccircle cx='23' cy='53' r='0.6'/%3E%3Ccircle cx='39' cy='44' r='0.8'/%3E%3Ccircle cx='54' cy='56' r='0.9'/%3E%3Ccircle cx='16' cy='60' r='0.7'/%3E%3Ccircle cx='47' cy='39' r='0.5'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 64px 64px;
+  }
+
+  /* Architectural hairline floor-plan grid */
+  .floorplan-grid {
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(to right, var(--art-grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--art-grid-line) 1px, transparent 1px),
+      linear-gradient(to right, color-mix(in srgb, var(--gold-leaf) 14%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--gold-leaf) 14%, transparent) 1px, transparent 1px);
+    background-size: 28px 28px, 28px 28px, 140px 140px, 140px 140px;
+  }
+
+  /* Flat gold leaf with a single crisp lighter highlight line (never a soft gradient wash) */
+  .gold-leaf-rule {
+    height: 3px;
+    background: var(--gold-leaf);
+    box-shadow: inset 0 1px 0 var(--gold-highlight);
+  }
+
+  .gold-leaf-bar {
+    background: var(--gold-leaf);
+    border-top: 1px solid var(--gold-highlight);
+    color: #1E1F22;
+  }
+
+  /* Brass plate surface with engraved double hairline feel */
+  .brass-plate {
+    position: relative;
+    background: var(--art-brass-plate);
+    color: var(--art-brass-ink);
+    border: 1.5px solid var(--art-stroke);
+    box-shadow: inset 0 1px 0 var(--gold-highlight);
+  }
+
+  /* Diagonal appraisal split band */
+  .appraisal-split {
+    position: relative;
+    background-color: var(--band);
+    color: var(--band-text);
+    overflow: hidden;
+  }
+
+  .appraisal-split::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold-leaf);
+    clip-path: polygon(0 0, 42% 0, 26% 100%, 0 100%);
+    pointer-events: none;
+  }
+
+  .appraisal-split::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold-highlight);
+    clip-path: polygon(42% 0, 42.35% 0, 26.35% 100%, 26% 100%);
+    pointer-events: none;
+  }
+
+  /* Shopfront horizontal scroll-snap on mobile */
+  .window-track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(17.5rem, 84%);
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.75rem;
+    scrollbar-color: var(--gold-leaf) var(--raised);
+  }
+
+  .window-track > * {
+    scroll-snap-align: start;
+  }
+
+  @media (min-width: 900px) {
+    .window-track {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-columns: auto;
+      overflow-x: visible;
+      padding-bottom: 0;
+    }
+  }
 }
-.map iframe { width: 100%; min-height: 20rem; border: 0; filter: var(--map-filter); }
-.enquiry__host { display: block; }
-.enquiry__status { margin-top: 1rem; color: var(--muted); }
-.enquiry[data-state="present"] > .enquiry__status { display: none; }
+
+/* Signboard SOLD sash scroll-triggered slap-on motion:
+   Defaults to settled/visible when no JS or reduced motion is active. */
+.sold-sash-group {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sold-sash-group[data-sash="ready"] {
+    opacity: 1;
+    transform: translateY(-4px) rotate(-4deg) scale(1.03);
+  }
+
+  .sold-sash-group[data-sash="landed"] {
+    animation: sash-slap 420ms cubic-bezier(0.22, 1.28, 0.36, 1) forwards;
+  }
+
+  @keyframes sash-slap {
+    0% {
+      opacity: 1;
+      transform: translateY(-8px) rotate(-7deg) scale(1.07);
+    }
+    68% {
+      opacity: 1;
+      transform: translateY(1px) rotate(1.5deg) scale(0.99);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+  }
+}
+
+.map iframe {
+  width: 100%;
+  min-height: 20rem;
+  border: 0;
+  filter: var(--map-filter);
+}
+
+.enquiry__host {
+  display: block;
+}
+
+.enquiry__status {
+  margin-top: 1rem;
+  color: var(--muted);
+}
+
+.enquiry[data-state="present"] > .enquiry__status {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  html {
+    scroll-behavior: auto;
+  }
 }
+
 @media print {
-  nav, .skip-link, .enquiry, button { display: none !important; }
-  html { background: white; color: black; }
-  a { color: inherit; }
+  nav, .skip-link, .enquiry, button, .no-print {
+    display: none !important;
+  }
+
+  html, body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .bluestone-band, .appraisal-split {
+    background: white !important;
+    color: black !important;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+  }
+
+  .appraisal-split::before, .appraisal-split::after {
+    display: none !important;
+  }
+
+  a {
+    color: inherit;
+  }
 }
